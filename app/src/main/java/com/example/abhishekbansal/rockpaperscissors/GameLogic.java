@@ -166,174 +166,230 @@ public class GameLogic extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if (v.getId() == btnNewGame.getId()){
             //TODO:Restart The Game
+            DocumentReference optionUpdate = db.collection("GameRooms").document(docNumber);
+
+            optionUpdate
+                    .update("player1Option", "", "player2Option","", "winner", "")
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating document", e);
+                        }
+                    });
         }
     }
 
     public void gameLogic(){
-        if(player1Option == "Paper" && player2Option == "Paper")
+        String winner = "";
+
+        if(player1Option.equals("Paper") && player2Option.equals("Paper"))
 
         {
             System.out.println("It's a Tie");
             txtNotification.setText("It's a Tie");
         }
-        else if(player1Option == "Rock" && player2Option == "Rock")
+        else if(player1Option.equals("Rock") && player2Option.equals("Rock"))
 
         {
             System.out.println("It's a Tie");
             txtNotification.setText("It's a Tie");
         }
-        else if(player1Option == "Scissors" && player2Option == "Scissors")
+        else if(player1Option.equals("Scissors")  && player2Option.equals("Scissors") )
 
         {
             System.out.println("It's a Tie");
             txtNotification.setText("It's a Tie");
         }
-        else if(player1Option == "Lizard" && player2Option == "Lizard")
+        else if(player1Option.equals("Lizard") && player2Option.equals("Lizard"))
 
         {
             System.out.println("It's a Tie");
             txtNotification.setText("It's a Tie");
         }
-        else if(player1Option == "Spock" && player2Option == "Spock")
+        else if(player1Option.equals("Spock") && player2Option.equals("Spock") )
 
         {
             System.out.println("It's a Tie");
             txtNotification.setText("It's a Tie");
         }
 // Rock
-        else if(player1Option == "Rock" && player2Option == "Paper")
+        else if(player1Option.equals("Rock")  && player2Option.equals("Paper") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
-        else if(player1Option == "Rock" && player2Option == "Lizard")
+        else if(player1Option.equals("Rock")  && player2Option.equals("Lizard") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Rock" && player2Option == "Spock")
+        else if(player1Option.equals("Rock") && player2Option.equals("Spock") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
-        else if(player1Option == "Rock" && player2Option == "Scissors")
+        else if(player1Option.equals("Rock")  && player2Option.equals("Scissors") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
 // Paper
 
-        else if(player1Option == "Paper" && player2Option == "Rock")
+        else if(player1Option.equals("Paper")  && player2Option.equals("Rock") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Paper" && player2Option == "Lizard")
+        else if(player1Option.equals("Paper")  && player2Option.equals("Lizard") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
-        else if(player1Option == "Paper" && player2Option == "Spock")
+        else if(player1Option.equals("Paper")  && player2Option.equals("Spock") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Paper" && player2Option == "Scissors")
+        else if(player1Option.equals("Paper")  && player2Option.equals("Scissors") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
 // Scissors
 
-        else if(player1Option == "Scissors" && player2Option == "Paper")
+        else if(player1Option.equals("Scissors")  && player2Option.equals("Paper") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Scissors" && player2Option == "Rock")
+        else if(player1Option.equals("Scissors")  && player2Option.equals("Rock") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
-        else if(player1Option == "Scissors" && player2Option == "Lizard")
+        else if(player1Option.equals("Scissors")  && player2Option.equals("Lizard") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Scissors" && player2Option == "Spock")
+        else if(player1Option.equals("Scissors")  && player2Option.equals("Spock") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
 // Spock
 
-        else if(player1Option == "Spock" && player2Option == "Scissors")
+        else if(player1Option.equals("Spock")  && player2Option.equals("Scissors") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Spock" && player2Option == "Paper")
+        else if(player1Option.equals("Spock")  && player2Option.equals("Paper") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
-        else if(player1Option == "Spock" && player2Option == "Rock")
+        else if(player1Option.equals("Spock")  && player2Option.equals("Rock") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Spock" && player2Option == "Lizard")
+        else if(player1Option.equals("Spock")  && player2Option.equals("Lizard") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
 // Lizard
 
-        else if(player1Option == "Lizard" && player2Option == "Spock")
+        else if(player1Option.equals("Lizard")  && player2Option.equals("Spock") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
-        else if(player1Option == "Lizard" && player2Option == "Scissors")
+        else if(player1Option.equals("Lizard")  && player2Option.equals("Scissors") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Lizard" && player2Option == "Paper")
+        else if(player1Option.equals("Lizard")  && player2Option.equals("Paper") )
 
         {
             System.out.println("Player 1 Wins");
             txtNotification.setText("Player 1 Wins");
+            winner = player1Number;
         }
-        else if(player1Option == "Lizard" && player2Option == "Rock")
+        else if(player1Option.equals("Lizard")  && player2Option.equals("Rock") )
 
         {
             System.out.println("Player 2 Wins");
             txtNotification.setText("Player 2 Wins");
+            winner = player2Number;
         }
         else {
             System.out.println("Waiting for a player to shake");
             txtNotification.setText("Waiting for a player to shake");
         }
-
+/*
+        if (!winner.equals("")){
+            DocumentReference optionUpdate = db.collection("players").document(winner);
+            optionUpdate
+                    .update("player1Option", "", "player2Option","", "winner", "")
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating document", e);
+                        }
+                    });
+        }
+*/
 
 
     }
